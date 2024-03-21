@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 4.0.1 commit date:2023-11-16, commit time:16:40, hash:d0dd92834a08</authoring_tool>
+    </contributor>
+    <created>2024-03-08T20:04:21</created>
+    <modified>2024-03-08T20:04:21</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="PinkminiArm-mesh" name="PinkminiArm">
+      <mesh>
+        <source id="PinkminiArm-mesh-positions">
+          <float_array id="PinkminiArm-mesh-positions-array" count="24">-50 0 350 -50 80 350 -50 0 0 -50 80 0 50 0 350 50 0 0 50 80 350 50 80 0</float_array>
+          <technique_common>
+            <accessor source="#PinkminiArm-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="PinkminiArm-mesh-normals">
+          <float_array id="PinkminiArm-mesh-normals-array" count="18">-1 0 0 0 -1 0 1 0 0 0 1 0 0 0 1 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#PinkminiArm-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PinkminiArm-mesh-vertices">
+          <input semantic="POSITION" source="#PinkminiArm-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#PinkminiArm-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#PinkminiArm-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 0 1 5 1 5 1 0 1 2 1 6 2 4 2 7 2 7 2 4 2 5 2 1 3 6 3 3 3 3 3 6 3 7 3 4 4 6 4 0 4 0 4 6 4 1 4 7 5 5 5 3 5 3 5 5 5 2 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="PinkminiArm" name="PinkminiArm" type="NODE">
+        <matrix sid="transform">0.001 0 0 0.05 0 -4.37114e-11 -0.001 0 0 0.001 -4.37114e-11 0 0 0 0 1</matrix>
+        <instance_geometry url="#PinkminiArm-mesh" name="PinkminiArm"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
