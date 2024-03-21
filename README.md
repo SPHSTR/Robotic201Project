@@ -3,6 +3,10 @@
 
 package name : forklift
 
-``` ros2 launch forklift launch_sim.launch.py ```
+```py
+ros2 launch forklift launch_sim.launch.py
+```
 
-``` ros2 run forklift forklift_control.py ```
+```py
+ros2 run forklift forklift_control.py
+```
