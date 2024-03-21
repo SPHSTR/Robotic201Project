@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="lpurplearm" params="">
+        <joint name="LPurpleArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+    
+    <xacro:macro name="rpurplearm" params="">
+        <joint name="RPurpleArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="lgreencube" params="">
+        <joint name="LGreenCube">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="rgreencube" params="">
+        <joint name="RGreenCube">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="lorangearm" params="">
+        <joint name="LOrangeArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="rorangearm" params="">
+        <joint name="ROrangeArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="flpinkminiarm" params="">
+        <joint name="FLPinkMiniArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="rlpinkminiarm" params="">
+        <joint name="RLPinkMiniArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="frpinkminiarm" params="">
+        <joint name="FRPinkMiniArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="rrpinkminiarm" params="">
+        <joint name="RRPinkMiniArm">
+        <command_interface name="velocity">
+            <param name="min">0.0</param>
+            <param name="max">5.0</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+</robot>
