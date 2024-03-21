@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <xacro:include filename="inertial_macros.xacro" />
+<!-- MATERIAL -->
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <material name="purple">
+        <color rgba="0.46 0 0.78 1"/>
+    </material>
+
+    <material name="pink">
+        <color rgba="0.99 0.71 0.75 1"/>
+    </material>
+
+    <material name="green">
+        <color rgba="0 1 0 1"/>
+    </material>
+
+<!-- BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+<!-- CHASIS -->
+
+    <joint name="chasis" type="fixed">
+        <parent link="base_link"/>
+        <child link="body"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="body"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Body.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <self_collide>1</self_collide> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Body.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="50" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="body">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo> 
+
+<!-- FLWheel -->
+
+    <joint name="FLWheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="flwheel"/>
+        <origin xyz="0.75 -0.5 0"/>
+        <axis xyz = "1 0 0"/>
+    </joint>
+
+    <link name="flwheel"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_cylinder mass="10" length = "0.216" radius="0.416"> 
+            <origin xyz="0.13 0 0" rpy="0 ${pi/2} 0"/>
+        </xacro:inertial_cylinder>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="flwheel">
+        <material>Gazebo/Black</material>
+    </gazebo> 
+
+<!-- RLWheel -->
+
+    <joint name="RLWheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="rlwheel"/>
+        <origin xyz="0.75 0.5 0"/>
+        <axis xyz = "1 0 0"/>
+    </joint>
+
+    <link name="rlwheel"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_cylinder mass="10" length = "0.216" radius="0.416"> 
+            <origin xyz="0.13 0 0" rpy="0 ${pi/2} 0"/>
+        </xacro:inertial_cylinder>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="rlwheel">
+        <material>Gazebo/Black</material>
+    </gazebo> 
+
+<!-- FRWheel -->
+
+    <joint name="FRWheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="frwheel"/>
+        <origin xyz="-0.75 -0.5 0"/>
+        <axis xyz = "1 0 0"/>
+    </joint>
+
+    <link name="frwheel"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_cylinder mass="10" length = "0.216" radius="0.416"> 
+            <origin xyz="-0.13 0 0" rpy="0 ${pi/2} 0"/>
+        </xacro:inertial_cylinder>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="frwheel">
+        <material>Gazebo/Black</material>
+    </gazebo> 
+
+<!-- RRWheel -->
+
+    <joint name="RRWheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="rrwheel"/>
+        <origin xyz="-0.75 0.5 0"/>
+        <axis xyz = "1 0 0"/>
+    </joint>
+
+    <link name="rrwheel"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/Wheel.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_cylinder mass="10" length = "0.216" radius="0.416"> 
+            <origin xyz="-0.13 0 0" rpy="0 ${pi/2} 0"/>
+        </xacro:inertial_cylinder>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="rrwheel">
+        <material>Gazebo/Black</material>
+    </gazebo> 
+
+<!-- LPurpleArm -->
+
+    <joint name="LPurpleArm" type="prismatic">
+        <parent link="body"/>
+        <child link="lpurplearm"/>
+        <origin xyz="0.7 -0.75 -0.1" rpy="0 0 ${pi}"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="2.4" effort="100" velocity="10"/>
+        <dynamics damping ="1" friction="45"/>
+    </joint>
+
+    <link name="lpurplearm"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PurpleArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="purple"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PurpleArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="lpurplearm">
+        <material>Gazebo/Purple</material>
+    </gazebo> 
+
+<!-- RPurpleArm -->
+
+    <joint name="RPurpleArm" type="prismatic">
+        <parent link="body"/>
+        <child link="rpurplearm"/>
+        <origin xyz="-0.7 -0.75 -0.1" rpy="0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="2.4" effort="100" velocity="10"/>
+        <dynamics damping ="1" friction="45"/>
+    </joint>
+
+    <link name="rpurplearm"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PurpleArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="purple"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PurpleArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="rpurplearm">
+        <material>Gazebo/Purple</material>
+    </gazebo> 
+
+<!-- LGreenCube -->
+
+    <joint name="LGreenCube" type="prismatic">
+        <parent link="lpurplearm"/>
+        <child link="lgreencube"/>
+        <origin xyz="0.05 0 0" rpy="0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0.13" upper="2.4" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="5"/>
+    </joint>
+
+    <link name="lgreencube"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/GreenCube.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="green"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/GreenCube.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="lgreencube">
+        <material>Gazebo/Green</material>
+    </gazebo> 
+
+<!-- RGreenCube -->
+
+    <joint name="RGreenCube" type="prismatic">
+        <parent link="rpurplearm"/>
+        <child link="rgreencube"/>
+        <origin xyz="0.05 0 0" rpy="0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0.13" upper="2.4" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="5"/>
+    </joint>
+
+    <link name="rgreencube"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/GreenCube.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="green"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/GreenCube.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="rgreencube">
+        <material>Gazebo/Green</material>
+    </gazebo> 
+
+<!-- LOrangeArm -->
+
+    <joint name="LOrangeArm" type="prismatic">
+        <parent link="lgreencube"/>
+        <child link="lorangearm"/>
+        <origin xyz="0.1 -0.05 0" rpy="0 0 ${pi/2}"/>
+        <axis xyz = "1 0 0"/>
+        <limit lower="0" upper="-1.1" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="1"/>
+    </joint>
+
+    <link name="lorangearm"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/OrangeArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/OrangeArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="lorangearm">
+        <material>Gazebo/Orange</material>
+    </gazebo> 
+
+<!-- ROrangeArm -->
+
+    <joint name="ROrangeArm" type="prismatic">
+        <parent link="rgreencube"/>
+        <child link="rorangearm"/>
+        <origin xyz="0 0.05 0" rpy="0 0 -${pi/2}"/>
+        <axis xyz = "1 0 0"/>
+        <limit lower="0" upper="-1.1" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="1"/>
+    </joint>
+
+    <link name="rorangearm"> 
+        <visual> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/OrangeArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="norage"/>
+        </visual>
+        <collision> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/OrangeArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        <mu1 value = "0.1"/>
+        <mu2 value = "0.1"/>
+    </link>
+
+    <gazebo reference="rorangearm">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+<!-- FLPinkMiniArm -->
+
+    <joint name="FLPinkMiniArm" type="revolute">
+        <parent link="lorangearm"/>
+        <child link="flpinkminiarm"/>
+        <origin xyz="0.17 0.05 -0.18" rpy="0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="${pi/2}" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="1"/>
+    </joint>
+
+    <link name="flpinkminiarm"> 
+        <visual> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="pink"/>
+        </visual>
+        <collision> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="flpinkminiarm">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+
+<!-- RLPinkMiniArm -->
+
+    <joint name="RLPinkMiniArm" type="revolute">
+        <parent link="lorangearm"/>
+        <child link="rlpinkminiarm"/>
+        <origin xyz="1.03 0.05 -0.18" rpy="0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="-${pi/2}" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="1"/>
+    </joint>
+
+    <link name="rlpinkminiarm"> 
+        <visual> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="pink"/>
+        </visual>
+        <collision> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="rlpinkminiarm">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+
+<!-- FRPinkMiniArm -->
+
+    <joint name="FRPinkMiniArm" type="revolute">
+        <parent link="rorangearm"/>
+        <child link="frpinkminiarm"/>
+        <origin xyz="0.17 0.05 -0.1" rpy="${pi} 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="${pi/2}" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="1"/>
+    </joint>
+
+    <link name="frpinkminiarm"> 
+        <visual> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="pink"/>
+        </visual>
+        <collision> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="frpinkminiarm">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+
+<!-- RRPinkMiniArm -->
+
+    <joint name="RRPinkMiniArm" type="revolute">
+        <parent link="rorangearm"/>
+        <child link="rrpinkminiarm"/>
+        <origin xyz="1.03 0.05 -0.1" rpy="${pi} 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit lower="0" upper="-${pi/2}" effort="100" velocity="1"/>
+        <dynamics damping ="1" friction="10"/>
+    </joint>
+
+    <link name="rrpinkminiarm"> 
+        <visual> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/> 
+            </geometry>
+            <material name="pink"/>
+        </visual>
+        <collision> 
+            <origin xyz="-0.05 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find forklift)/description/PinkeminiArm.dae" scale="1 1 1"/>
+            </geometry>  
+        </collision>
+        <xacro:inertial_box mass="0.02" x="0" y="0" z="0"> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="rrpinkminiarm">
+        <material>Gazebo/RedGlow</material>
+    </gazebo>
+</robot>
